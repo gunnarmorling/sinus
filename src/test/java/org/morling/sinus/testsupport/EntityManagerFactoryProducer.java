@@ -18,13 +18,13 @@ public class EntityManagerFactoryProducer {
 
     @Inject
     private BeanManager beanManager;
+
     @Produces
     @ApplicationScoped
     public EntityManagerFactory produceEntityManagerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put("javax.persistence.bean.manager", beanManager);
         props.put(Environment.CONNECTION_PROVIDER, TransactionalConnectionProvider.class);
-//        props.put(Environment.DATASOURCE, CdiTestBase.getDataSource());
         return Persistence.createEntityManagerFactory(
                 "sinusTestPu",
                 props

@@ -17,11 +17,7 @@ public abstract class AbstractCdiTest {
     private static NamingBeanImpl NAMING_BEAN;
 
     @Rule
-    public WeldInitiator weld = WeldInitiator.from(
-            ((Weld) SeContainerInitializer.newInstance())
-                .addBeanClasses(EntityManagerFactoryProducer.class, EntityManagerProducer.class, ObserverTestBean.class)
-                .addServices(new MyTransactionServices())
-            )
+    public WeldInitiator weld = WeldInitiator.from(((Weld) SeContainerInitializer.newInstance()))
         .activate(RequestScoped.class)
         .inject(this)
         .build();
